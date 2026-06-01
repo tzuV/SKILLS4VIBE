@@ -85,6 +85,7 @@ Use the `write-a-skill` skill to guide you through creating a well-structured sk
 | Skill | Description | Best For |
 |-------|-------------|----------|
 | [caveman](.vibe/skills/caveman/SKILL.md) | Ultra-compressed communication (75% fewer tokens) | Reducing token usage, technical discussions |
+| [data_eda_dashboard](.vibe/skills/data_eda_dashboard/SKILL.md) | A skill to scan folders for data files (CSV, JSON, etc.), detect relationships, merge or combine datasets, and generate a comprehensive EDA dashboard with visualizations tailored to data types. | Data exploration, EDA dashboards |
 | [diagnosis](.vibe/skills/diagnosis/SKILL.md) | Structured debugging workflow | Bug hunting, performance issues |
 | [grill-me](.vibe/skills/grill-me/SKILL.md) | Rigorous design review | Architecture decisions, plan validation |
 | [improve-codebase](.vibe/skills/improve-codebase/SKILL.md) | Architectural improvements | Refactoring, codebase navigation |
