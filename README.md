@@ -80,36 +80,6 @@ Use the `write-a-skill` skill to guide you through creating a well-structured sk
 ```
 
 
-
-
-### For Individuals Sharing Skills
-
-1. **Fork this repository**
-2. **Add your skills** to your fork
-3. **Share with specific collaborators** by:
-   - Adding them as collaborators to your fork
-   - Sharing the repository URL
-   - Exporting individual skill files
-
-### Syncing with Upstream
-
-To get updates from the main repository:
-
-```bash
-# Add upstream remote (if not already added)
-git remote add upstream https://github.com/tzuV/SKILLS4VIBE.git
-
-# Fetch and merge updates
-git fetch upstream
-git merge upstream/main
-
-# Resolve any conflicts, then push to your fork
-git push origin main
-```
-
----
-
-
 ## Current Skills
 
 | Skill | Description | Best For |
