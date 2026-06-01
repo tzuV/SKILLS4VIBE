@@ -176,6 +176,5 @@ This project is open source. Feel free to use, modify, and share these skills ac
 
 ## Resources
 
-- [Vibe CLI Documentation](https://github.com/mistralai/vibe-cli)
 - [Skill Writing Guide](.vibe/skills/write-a-skill/SKILL.md)
 - [Issue Tracker](https://github.com/tzuV/SKILLS4VIBE/issues)
