@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Web Viewer</title>
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f6f8fa;
+            --bg-tertiary: #e8ecf0;
+            --text-primary: #1a1a1a;
+            --text-secondary: #65676b;
+            --text-muted: #9e9ea0;
+            --border-color: #e4e6eb;
+            --accent-color: #6364ff;
+            --user-bg: #6364ff;
+            --user-text: #ffffff;
+            --assistant-bg: #f6f8fa;
+            --assistant-text: #1a1a1a;
+            --assistant-border: #e4e6eb;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #242526;
+            --bg-tertiary: #323436;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b3b8;
+            --text-muted: #7a7d84;
+            --border-color: #393a3b;
+            --accent-color: #8b8cff;
+            --user-bg: #4a4b95;
+            --user-text: #ffffff;
+            --assistant-bg: #242526;
+            --assistant-text: #b0b3b8;
+            --assistant-border: #393a3b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 28px;
+            height: 28px;
+        }
+
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        /* Session selector */
+        .session-selector {
+            position: relative;
+        }
+
+        .session-selector select {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            min-width: 200px;
+        }
+
+        .session-selector select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        /* Theme toggle */
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        /* Main container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Messages container */
+        .messages-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Message styling */
+        .message {
+            display: flex;
+            gap: 16px;
+            padding: 16px 20px;
+            border-radius: var(--radius-lg);
+            max-width: 90%;
+        }
+
+        .message.user {
+            background-color: var(--user-bg);
+            color: var(--user-text);
+            align-self: flex-end;
+            border-top-right-radius: 0;
+        }
+
+        .message.assistant {
+            background-color: var(--assistant-bg);
+            color: var(--assistant-text);
+            border: 1px solid var(--assistant-border);
+            align-self: flex-start;
+            border-top-left-radius: 0;
+        }
+
+        .message.system {
+            background-color: var(--bg-tertiary);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            padding: 12px 20px;
+            align-self: center;
+            border-radius: var(--radius-md);
+        }
+
+        /* Avatar */
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .message.user .avatar {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: var(--user-text);
+        }
+
+        .message.assistant .avatar {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .message.system .avatar {
+            display: none;
+        }
+
+        /* Message content */
+        .message-content {
+            flex: 1;
+            overflow-wrap: anywhere;
+        }
+
+        .message-content p {
+            margin: 0 0 12px 0;
+        }
+
+        .message-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Code blocks */
+        .message-content pre {
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 12px;
+            border-radius: var(--radius-md);
+            overflow-x: auto;
+            margin: 12px 0;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        [data-theme="dark"] .message-content pre {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .message-content code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 0.9rem;
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        [data-theme="dark"] .message-content code {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Markdown styling */
+        .message-content h1,
+        .message-content h2,
+        .message-content h3,
+        .message-content h4,
+        .message-content h5,
+        .message-content h6 {
+            margin: 16px 0 12px 0;
+            color: var(--text-primary);
+        }
+
+        .message-content ul,
+        .message-content ol {
+            margin: 12px 0;
+            padding-left: 24px;
+        }
+
+        .message-content li {
+            margin: 6px 0;
+        }
+
+        .message-content blockquote {
+            border-left: 3px solid var(--border-color);
+            padding-left: 12px;
+            margin: 12px 0;
+            color: var(--text-secondary);
+        }
+
+        .message-content hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 20px 0;
+        }
+
+        /* Tables */
+        .message-content table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 12px 0;
+        }
+
+        .message-content th,
+        .message-content td {
+            padding: 8px 12px;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        .message-content th {
+            background-color: var(--bg-tertiary);
+            font-weight: 600;
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+
+        .empty-state h2 {
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Loading indicator */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            border-top-color: var(--accent-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Connection status */
+        .connection-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--text-muted);
+        }
+
+        .status-dot.connected {
+            background-color: #23a052;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 12px;
+            }
+
+            .message {
+                max-width: 100%;
+            }
+
+            .message.user {
+                border-top-right-radius: var(--radius-md);
+            }
+
+            .message.assistant {
+                border-top-left-radius: var(--radius-md);
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .session-selector select {
+                min-width: 100%;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Auto-scroll to bottom button */
+        .scroll-to-bottom {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+            opacity: 0;
+            transition: opacity 0.2s, transform 0.2s;
+            transform: translateY(20px);
+        }
+
+        .scroll-to-bottom.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-to-bottom:hover {
+            background-color: var(--accent-color);
+            filter: brightness(1.1);
+        }
+
+        .scroll-to-bottom svg {
+            width: 24px;
+            height: 24px;
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="logo-text">Vibe Viewer</span>
+            </div>
+            <div class="header-actions">
+                <div class="session-selector">
+                    <select id="sessionSelect">
+                        <option value="">Loading...</option>
+                    </select>
+                </div>
+                <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="messages-container" id="messagesContainer">
+            <div class="empty-state">
+                <div class="loading"></div>
+                <p>Loading conversation...</p>
+            </div>
+        </div>
+    </div>
+
+    <button class="scroll-to-bottom" id="scrollToBottom" title="Scroll to bottom">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="8,18 16,18 16,6"/>
+        </svg>
+    </button>
+
+    <script>
+        // Theme management
+        const theme = localStorage.getItem('theme') || 'dark';
+        document.body.setAttribute('data-theme', theme);
+
+        // Markdown rendering
+        function renderMarkdown(content) {
+            // Escape HTML
+            content = content
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+
+            // Headers
+            content = content
+                .replace(/^# (.*$)/gm, '<h1>$1</h1>')
+                .replace(/^## (.*$)/gm, '<h2>$1</h2>')
+                .replace(/^### (.*$)/gm, '<h3>$1</h3>')
+                .replace(/^#### (.*$)/gm, '<h4>$1</h4>')
+                .replace(/^##### (.*$)/gm, '<h5>$1</h5>')
+                .replace(/^###### (.*$)/gm, '<h6>$1</h6>');
+
+            // Bold and Italic
+            content = content
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/__(.*?)__/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/_([^_]+)_/g, '<em>$1</em>');
+
+            // Strike-through
+            content = content.replace(/~~(.*?)~~/g, '<del>$1</del>');
+
+            // Links
+            content = content.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+
+            // Images
+            content = content.replace(/!\[([^\]]+)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="max-width: 100%; border-radius: 8px; margin: 12px 0;">');
+
+            // Horizontal rule
+            content = content.replace(/^---$/gm, '<hr>');
+
+            // Lists
+            content = content
+                .replace(/^\- (.*$)/gm, '<li>$1</li>')
+                .replace(/^\* (.*$)/gm, '<li>$1</li>')
+                .replace(/^\+ (.*$)/gm, '<li>$1</li>');
+
+            // Numbered lists
+            content = content.replace(/^(\d+)\. (.*$)/gm, '<li>$2</li>');
+
+            // Blockquotes
+            content = content.replace(/^>(.*)$/gm, '<blockquote>$1</blockquote>');
+
+            // Inline code
+            content = content.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+            // Code blocks (```)
+            content = content.replace(/```(\w*)\n([\s\S]*?)```/g, (match, lang, code) => {
+                return `<pre><code class="language-${lang}">${code.trim()}</code></pre>`;
+            });
+
+            // Tables
+            content = content.replace(/^\|(.+)\|$/gm, (match) => {
+                const row = match.trim();
+                if (row.startsWith('|') && row.endsWith('|')) {
+                    const cells = row.slice(1, -1).split('|').map(c => c.trim());
+                    const isHeader = cells.every(c => /^[-:]+$/.test(c));
+                    if (isHeader) {
+                        return '<tr>' + cells.map(c => '<th>' + c.replace(/[^:]/g, '').replace(/:/g, '</th><th>') + '</th>').join('') + '</tr>';
+                    }
+                    const tag = cells[0] === '' ? 'th' : 'td';
+                    return '<tr>' + cells.map(c => `<${tag}>${c}</${tag}>`).join('') + '</tr>';
+                }
+                return row;
+            });
+
+            // Wrap tables
+            let tableMatch = content.match(/<tr>.*<\/tr>/g);
+            if (tableMatch && tableMatch.length > 1) {
+                content = content.replace(/((?:<tr>.*<\/tr>\n?)+)/g, '<table>$1</table>');
+            }
+
+            // Wrap list items in ul/ol
+            content = content.replace(/((?:<li>.*<\/li>\n?)+)/g, '<ul>$1</ul>');
+
+            return content;
+        }
+
+        // Create message element
+        function createMessageElement(message) {
+            const msgEl = document.createElement('div');
+            msgEl.className = `message ${message.role}`;
+
+            const avatarEl = document.createElement('div');
+            avatarEl.className = 'avatar';
+            avatarEl.textContent = message.role === 'user' ? 'U' : 'A';
+
+            const contentEl = document.createElement('div');
+            contentEl.className = 'message-content';
+            contentEl.innerHTML = renderMarkdown(message.content || '');
+
+            msgEl.appendChild(avatarEl);
+            msgEl.appendChild(contentEl);
+
+            return msgEl;
+        }
+
+        // Load and display messages
+        async function loadMessages(sessionId = null) {
+            const url = sessionId ? `/api/session/${sessionId}` : '/api/messages';
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                const container = document.getElementById('messagesContainer');
+                container.innerHTML = '';
+                
+                if (data.messages && data.messages.length > 0) {
+                    data.messages.forEach(msg => {
+                        const msgEl = createMessageElement(msg);
+                        container.appendChild(msgEl);
+                    });
+                } else {
+                    container.innerHTML = '<div class="empty-state"><p>No messages in this conversation.</p></div>';
+                }
+                
+                // Scroll to bottom
+                scrollToBottom();
+                
+            } catch (error) {
+                console.error('Error loading messages:', error);
+                document.getElementById('messagesContainer').innerHTML = `
+                    <div class="empty-state">
+                        <p>Error loading conversation</p>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Load session list
+        async function loadSessions() {
+            try {
+                const response = await fetch('/api/sessions');
+                const data = await response.json();
+                
+                const select = document.getElementById('sessionSelect');
+                select.innerHTML = '';
+                
+                // Add current session first
+                if (data.current_session) {
+                    const option = document.createElement('option');
+                    option.value = data.current_session;
+                    option.textContent = `${data.current_session} (current)`;
+                    option.selected = true;
+                    select.appendChild(option);
+                    select.appendChild(document.createElement('option')).disabled = true;
+                    select.lastChild.textContent = '─';
+                }
+                
+                // Add other sessions
+                data.sessions.forEach(session => {
+                    const option = document.createElement('option');
+                    option.value = session.id;
+                    option.textContent = `${session.id} (${session.message_count} messages)`;
+                    select.appendChild(option);
+                });
+                
+                // Load messages for current session
+                if (data.current_session) {
+                    loadMessages(data.current_session);
+                }
+                
+            } catch (error) {
+                console.error('Error loading sessions:', error);
+            }
+        }
+
+        // Scroll to bottom
+        function scrollToBottom() {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+
+        // Theme toggle
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Session change
+        document.getElementById('sessionSelect').addEventListener('change', (e) => {
+            const sessionId = e.target.value;
+            if (sessionId) {
+                loadMessages(sessionId);
+            }
+        });
+
+        // Scroll to bottom button
+        const scrollBtn = document.getElementById('scrollToBottom');
+        window.addEventListener('scroll', () => {
+            const threshold = 100;
+            const atBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - threshold;
+            scrollBtn.classList.toggle('visible', !atBottom);
+        });
+
+        scrollBtn.addEventListener('click', scrollToBottom);
+
+        // Auto-refresh messages every 2 seconds
+        setInterval(() => {
+            const select = document.getElementById('sessionSelect');
+            if (select.value) {
+                loadMessages(select.value);
+            }
+        }, 2000);
+
+        // Initialize
+        loadSessions();
+    </script>
+</body>
+</html>

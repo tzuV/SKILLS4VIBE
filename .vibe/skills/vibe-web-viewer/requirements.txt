@@ -1,0 +1,2 @@
+# Vibe Web Viewer - Minimal Python dependencies
+# This skill only requires Python's standard library

@@ -1,6 +1,6 @@
 # SKILLS4VIBE
 
-A reusable collection of skills for Mistral's Vibe CLI. Share, discover, and collaborate on agent capabilities with other developers.
+A reusable collection of skills for Mistral's Vibe CLI. Share, discover, and collaborate on agent capabilities with other developers. 
 
 ## Quick Start
 
@@ -86,7 +86,6 @@ Use the `write-a-skill` skill to guide you through creating a well-structured sk
 |-------|-------------|----------|
 | [caveman](.vibe/skills/caveman/SKILL.md) | Ultra-compressed communication (75% fewer tokens) | Reducing token usage, technical discussions |
 | [clean-lean-coder](.vibe/skills/clean-lean-coder/SKILL.md) | Enforce clean code principles, refactor code, generate boilerplate, and provide real-time code reviews for maintainable, modular software | Refactoring, code reviews, best practices |
-| [ehr-caveman](.vibe/skills/ehr-caveman/SKILL.md) | Ultra-compressed EHR mode. Cuts token usage ~70% by stripping redundant boilerplate, repeated vitals, and template fluff while keeping full clinical accuracy | EHR text, medical records, token-efficient medical summaries |
 | [diagnosis](.vibe/skills/diagnosis/SKILL.md) | Structured debugging workflow | Bug hunting, performance issues |
 | [grill-me](.vibe/skills/grill-me/SKILL.md) | Rigorous design review | Architecture decisions, plan validation |
 | [improve-codebase](.vibe/skills/improve-codebase/SKILL.md) | Architectural improvements | Refactoring, codebase navigation |
@@ -95,6 +94,8 @@ Use the `write-a-skill` skill to guide you through creating a well-structured sk
 | [reusability](.vibe/skills/reusability/SKILL.md) | Code consolidation | Utility extraction, DRY principles |
 | [tdd](.vibe/skills/tdd/SKILL.md) | Test-driven development | Feature building, bug fixing |
 | [to-prd](.vibe/skills/to-prd/SKILL.md) | PRD creation | Documentation, issue tracking |
+| [vibe](.vibe/skills/vibe/SKILL.md) | Understand Vibe CLI internals: configuration, VIBE_HOME structure, parameters, agents, skills, tools, and runtime environment | Vibe CLI understanding, setup inspection |
+| [vibe-web-viewer](.vibe/skills/vibe-web-viewer/SKILL.md) | Display Mistral Vibe CLI conversations in a web browser with improved readability | Viewing CLI chat in browser, terminal readability issues |
 | [write-a-skill](.vibe/skills/write-a-skill/SKILL.md) | Skill creation guide | Building new skills |
 | [zoom-out](.vibe/skills/zoom-out/SKILL.md) | Context expansion | Codebase understanding |
 
@@ -149,4 +150,4 @@ This project is open source. Feel free to use, modify, and share these skills ac
 ## Resources
 
 - [Skill Writing Guide](.vibe/skills/write-a-skill/SKILL.md)
-- [Issue Tracker](https://github.com/tzuV/SKILLS4VIBE/issues)
+ 
