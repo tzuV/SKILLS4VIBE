@@ -90,6 +90,11 @@ Use the `write-a-skill` skill to guide you through creating a well-structured sk
 | [grill-me](.vibe/skills/grill-me/SKILL.md) | Rigorous design review | Architecture decisions, plan validation |
 | [improve-codebase](.vibe/skills/improve-codebase/SKILL.md) | Architectural improvements | Refactoring, codebase navigation |
 | [plan](.vibe/skills/plan/SKILL.md) | Technical planning | Project blueprints, stack decisions |
+| [ponytail](.vibe/skills/ponytail/SKILL.md) | Lazy senior dev mode. Forces the simplest, shortest solution that works: YAGNI, stdlib first, no unrequested abstractions | Minimal solutions, avoiding over-engineering |
+| [ponytail-audit](.vibe/skills/ponytail-audit/SKILL.md) | Audit the whole repo for over-engineering. A ranked list of what to delete, simplify, or replace with stdlib or native features | Codebase audits, simplification |
+| [ponytail-debt](.vibe/skills/ponytail-debt/SKILL.md) | Harvest every ponytail: shortcut comment into one debt ledger, so deferrals get tracked instead of forgotten. One-shot report | Tech debt tracking |
+| [ponytail-help](.vibe/skills/ponytail-help/SKILL.md) | Quick reference for ponytail's modes, skills, and commands. One-shot display | Ponytail documentation |
+| [ponytail-review](.vibe/skills/ponytail-review/SKILL.md) | Review a diff for over-engineering. Finds what to delete: reinvented stdlib, needless deps, speculative abstractions. One line per finding | Code review, diff analysis |
 | [prototype](.vibe/skills/prototype/SKILL.md) | Rapid prototyping | Design exploration, UI mockups |
 | [reusability](.vibe/skills/reusability/SKILL.md) | Code consolidation | Utility extraction, DRY principles |
 | [tdd](.vibe/skills/tdd/SKILL.md) | Test-driven development | Feature building, bug fixing |
