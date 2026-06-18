@@ -184,7 +184,6 @@ Use the `write-a-skill` skill to guide you through creating a well-structured sk
 | [repo-cleanup-audit](.vibe/skills/repo-cleanup-audit/SKILL.md) | Analyze repository structure to identify modular design connections, loose scripts, and test files. Provides non-destructive cleanup recommendations with reasoning. | Repository cleanup, codebase audit, modular design analysis |
 | [tdd](.vibe/skills/tdd/SKILL.md) | Test-driven development | Feature building, bug fixing |
 | [to-prd](.vibe/skills/to-prd/SKILL.md) | PRD creation | Documentation, issue tracking |
-| [vibe](.vibe/skills/vibe/SKILL.md) | Understand Vibe CLI internals: configuration, VIBE_HOME structure, parameters, agents, skills, tools, and runtime environment | Vibe CLI understanding, setup inspection |
 | [vibe-web-viewer](.vibe/skills/vibe-web-viewer/SKILL.md) | Display Mistral Vibe CLI conversations in a web browser with improved readability | Viewing CLI chat in browser, terminal readability issues |
 | [write-a-skill](.vibe/skills/write-a-skill/SKILL.md) | Skill creation guide | Building new skills |
 | [zoom-out](.vibe/skills/zoom-out/SKILL.md) | Context expansion | Codebase understanding |
