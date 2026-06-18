@@ -6,28 +6,46 @@ A reusable collection of skills for Mistral's Vibe CLI. Share, discover, and col
 
 ### For Consumers (Using Shared Skills)
 
-#### **Option 1: Easy Install (Recommended)**
+#### **Option 1: One-Liner (Recommended)**
 
-Run the install script - it handles everything automatically:
+**Windows (PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/tzuV/SKILLS4VIBE/main/install.py | python
+```
+
+**Unix/Linux/macOS (bash/zsh/etc):**
+```bash
+curl -sSL https://raw.githubusercontent.com/tzuV/SKILLS4VIBE/main/install.py | python3
+```
+
+The script will:
+- Clone the repository to `~/SKILLS4VIBE` automatically
+- Create symlinks to `~/.vibe/skills/` (skills auto-update with `git pull`)
+- Tell you to reload Vibe
+
+---
+
+#### **Option 2: Clone Then Install**
+
+If you prefer to clone first and browse the repo:
 
 **Windows:**
 ```cmd
+git clone https://github.com/tzuV/SKILLS4VIBE.git
+cd SKILLS4VIBE
 python install.py
 ```
 
 **Unix/Linux/macOS:**
 ```bash
+git clone https://github.com/tzuV/SKILLS4VIBE.git
+cd SKILLS4VIBE
 python3 install.py
 ```
 
-The script will:
-- Clone the repository to `~/SKILLS4VIBE` (or update if already cloned)
-- Create symlinks to `~/.vibe/skills/` (skills auto-update with `git pull`)
-- Tell you to reload Vibe
-
 **Options:**
 - `--uninstall` - Remove installed skills
-- `--no-symlinks` - Copy files instead of symlinking
+- `--no-symlinks` - Copy files instead of symlinking (useful on Windows without admin rights)
 - `--repo /path/to/repo` - Use a specific local repository
 
 Then just **reload Vibe** or start a new session and use the skills!
