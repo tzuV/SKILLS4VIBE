@@ -18,6 +18,19 @@ irm https://raw.githubusercontent.com/tzuV/SKILLS4VIBE/main/install.py | python
 curl -sSL https://raw.githubusercontent.com/tzuV/SKILLS4VIBE/main/install.py | python3
 ```
 
+**If you get SSL errors with curl:**
+```bash
+# Option A: Update your CA certificates (recommended)
+sudo apt-get install ca-certificates
+
+# Option B: Use -k flag (less secure, testing only)
+curl -k -sSL https://raw.githubusercontent.com/tzuV/SKILLS4VIBE/main/install.py | python3
+
+# Option C: Download with Python instead
+python3 -c "import urllib.request; urllib.request.urlretrieve('https://raw.githubusercontent.com/tzuV/SKILLS4VIBE/main/install.py', 'install.py')"
+python3 install.py
+```
+
 The script will:
 - Clone the repository to `~/SKILLS4VIBE` automatically
 - Create symlinks to `~/.vibe/skills/` (skills auto-update with `git pull`)
