@@ -97,6 +97,7 @@ Use the `write-a-skill` skill to guide you through creating a well-structured sk
 | [ponytail-review](.vibe/skills/ponytail-review/SKILL.md) | Review a diff for over-engineering. Finds what to delete: reinvented stdlib, needless deps, speculative abstractions. One line per finding | Code review, diff analysis |
 | [prototype](.vibe/skills/prototype/SKILL.md) | Rapid prototyping | Design exploration, UI mockups |
 | [reusability](.vibe/skills/reusability/SKILL.md) | Code consolidation | Utility extraction, DRY principles |
+| [repo-cleanup-audit](.vibe/skills/repo-cleanup-audit/SKILL.md) | Analyze repository structure to identify modular design connections, loose scripts, and test files. Provides non-destructive cleanup recommendations with reasoning. | Repository cleanup, codebase audit, modular design analysis |
 | [tdd](.vibe/skills/tdd/SKILL.md) | Test-driven development | Feature building, bug fixing |
 | [to-prd](.vibe/skills/to-prd/SKILL.md) | PRD creation | Documentation, issue tracking |
 | [vibe](.vibe/skills/vibe/SKILL.md) | Understand Vibe CLI internals: configuration, VIBE_HOME structure, parameters, agents, skills, tools, and runtime environment | Vibe CLI understanding, setup inspection |
