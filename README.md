@@ -6,6 +6,36 @@ A reusable collection of skills for Mistral's Vibe CLI. Share, discover, and col
 
 ### For Consumers (Using Shared Skills)
 
+#### **Option 1: Easy Install (Recommended)**
+
+Run the install script - it handles everything automatically:
+
+**Windows:**
+```cmd
+python install.py
+```
+
+**Unix/Linux/macOS:**
+```bash
+python3 install.py
+```
+
+The script will:
+- Clone the repository to `~/SKILLS4VIBE` (or update if already cloned)
+- Create symlinks to `~/.vibe/skills/` (skills auto-update with `git pull`)
+- Tell you to reload Vibe
+
+**Options:**
+- `--uninstall` - Remove installed skills
+- `--no-symlinks` - Copy files instead of symlinking
+- `--repo /path/to/repo` - Use a specific local repository
+
+Then just **reload Vibe** or start a new session and use the skills!
+
+---
+
+#### **Option 2: Manual Setup**
+
 1. **Trust the project folder** in your Vibe configuration:
    ```
    Add to ~/.vibe/trusted_folders.toml:
@@ -23,6 +53,29 @@ A reusable collection of skills for Mistral's Vibe CLI. Share, discover, and col
 3. **Vibe automatically discovers skills** from the `.vibe\skills\` directory when the folder is trusted or use /reload.
 
 4. **Use skills** 
+
+---
+
+## Updating Skills
+
+If you used the install script with symlinks (default):
+```bash
+cd ~/SKILLS4VIBE
+git pull origin main
+```
+
+If you used `--no-symlinks` (files were copied):
+```bash
+# Re-run the install script
+python install.py
+```
+
+To see all options:
+```bash
+python install.py --help
+```
+
+---
 
 ### For Contributors (Sharing Your Skills)
 
