@@ -171,6 +171,7 @@ Use the `write-a-skill` skill to guide you through creating a well-structured sk
 | [caveman](.vibe/skills/caveman/SKILL.md) | Ultra-compressed communication (75% fewer tokens) | Reducing token usage, technical discussions |
 | [clean-lean-coder](.vibe/skills/clean-lean-coder/SKILL.md) | Enforce clean code principles, refactor code, generate boilerplate, and provide real-time code reviews for maintainable, modular software | Refactoring, code reviews, best practices |
 | [diagnosis](.vibe/skills/diagnosis/SKILL.md) | Structured debugging workflow | Bug hunting, performance issues |
+| [file-summarizer](.vibe/skills/file-summarizer/SKILL.md) | Scan files or folders and generate comprehensive markdown summaries with visual representations | Summarizing codebases, documentation, or file collections |
 | [grill-me](.vibe/skills/grill-me/SKILL.md) | Rigorous design review | Architecture decisions, plan validation |
 | [improve-codebase](.vibe/skills/improve-codebase/SKILL.md) | Architectural improvements | Refactoring, codebase navigation |
 | [plan](.vibe/skills/plan/SKILL.md) | Technical planning | Project blueprints, stack decisions |
@@ -182,6 +183,7 @@ Use the `write-a-skill` skill to guide you through creating a well-structured sk
 | [prototype](.vibe/skills/prototype/SKILL.md) | Rapid prototyping | Design exploration, UI mockups |
 | [reusability](.vibe/skills/reusability/SKILL.md) | Code consolidation | Utility extraction, DRY principles |
 | [repo-cleanup-audit](.vibe/skills/repo-cleanup-audit/SKILL.md) | Analyze repository structure to identify modular design connections, loose scripts, and test files. Provides non-destructive cleanup recommendations with reasoning. | Repository cleanup, codebase audit, modular design analysis |
+| [readme-writer](.vibe/skills/readme-writer/SKILL.md) | Generate and maintain project README files, markdown content, and codebase documentation | README generation, markdown formatting, codebase summarization, tutorials |
 | [tdd](.vibe/skills/tdd/SKILL.md) | Test-driven development | Feature building, bug fixing |
 | [to-prd](.vibe/skills/to-prd/SKILL.md) | PRD creation | Documentation, issue tracking |
 | [vibe-web-viewer](.vibe/skills/vibe-web-viewer/SKILL.md) | Display Mistral Vibe CLI conversations in a web browser with improved readability | Viewing CLI chat in browser, terminal readability issues |
