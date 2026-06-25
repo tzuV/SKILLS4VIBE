@@ -186,6 +186,7 @@ Use the `write-a-skill` skill to guide you through creating a well-structured sk
 | [readme-writer](.vibe/skills/readme-writer/SKILL.md) | Generate and maintain project README files, markdown content, and codebase documentation | README generation, markdown formatting, codebase summarization, tutorials |
 | [tdd](.vibe/skills/tdd/SKILL.md) | Test-driven development | Feature building, bug fixing |
 | [to-prd](.vibe/skills/to-prd/SKILL.md) | PRD creation | Documentation, issue tracking |
+| [uv-expert](.vibe/skills/uv-expert/SKILL.md) | Expert guidance on UV, the ultra-fast Python package manager | Python packaging, dependency management, faster pip alternative |
 | [vibe-web-viewer](.vibe/skills/vibe-web-viewer/SKILL.md) | Display Mistral Vibe CLI conversations in a web browser with improved readability | Viewing CLI chat in browser, terminal readability issues |
 | [write-a-skill](.vibe/skills/write-a-skill/SKILL.md) | Skill creation guide | Building new skills |
 | [zoom-out](.vibe/skills/zoom-out/SKILL.md) | Context expansion | Codebase understanding |
