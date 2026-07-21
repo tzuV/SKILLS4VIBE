@@ -183,6 +183,7 @@ Use the `write-a-skill` skill to guide you through creating a well-structured sk
 | [prototype](.vibe/skills/prototype/SKILL.md) | Rapid prototyping | Design exploration, UI mockups |
 | [reusability](.vibe/skills/reusability/SKILL.md) | Code consolidation | Utility extraction, DRY principles |
 | [repo-cleanup-audit](.vibe/skills/repo-cleanup-audit/SKILL.md) | Analyze repository structure to identify modular design connections, loose scripts, and test files. Provides non-destructive cleanup recommendations with reasoning. | Repository cleanup, codebase audit, modular design analysis |
+| [shape-up-pitch](.vibe/skills/shape-up-pitch/SKILL.md) | Write effective project pitches using Shape Up methodology with the 5 ingredients: problem, appetite, solution, rabbit holes, no-gos | Project shaping, pitch creation, bet preparation |
 | [readme-writer](.vibe/skills/readme-writer/SKILL.md) | Generate and maintain project README files, markdown content, and codebase documentation | README generation, markdown formatting, codebase summarization, tutorials |
 | [tdd](.vibe/skills/tdd/SKILL.md) | Test-driven development | Feature building, bug fixing |
 | [test-generator](.vibe/skills/test-generator/SKILL.md) | Scan repositories and generate or update unit/integration tests for untested components | Test coverage improvement, automated test generation |
